@@ -2,6 +2,8 @@ import paho.mqtt
 import paho.mqtt.client as mqtt
 import time
 
+#This script subscribes to both the "HeartRate" and "BoundingBox" topics and prints the data it receives to the terminal
+
 def on_message(client, userdata, message):
         print("received message: " ,str(message.payload.decode("utf-8")))
 

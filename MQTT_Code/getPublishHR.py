@@ -7,12 +7,16 @@ import paho.mqtt.client as mqtt
 from random import randrange, uniform
 import time
 
+#This script gets the heart rate from the Bluetooth watch and publishes in under the topic "HeartRate" via MQTT
+
+
 mqttBroker ="10.38.4.212"
-client = mqtt.Client("Temperature_Inside")
+client = mqtt.Client("Jetson")
 LOGTIME = 60
 
 def notification_handler(sender, data):
-    client.publish("HeartRate", data[1])
+    print(str(data[1]), " ", end='\r')
+    client.publish("HeartRate", str(data[1]))
 
 
 async def main(address, char_uuid, time):

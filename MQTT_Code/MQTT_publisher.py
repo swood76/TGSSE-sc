@@ -5,6 +5,8 @@ import cv2
 import jetson.inference
 import jetson.utils
 
+#This script does inference on an image from a camera and publishes the bounding boxes from the detected objects via MQTT under the topic "BoundingBox"
+
 mqttBroker ="10.38.4.25" 
 
 client = mqtt.Client("Jetson",1883)

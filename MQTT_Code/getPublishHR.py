@@ -4,7 +4,6 @@ import platform
 import pickle
 from bleak import BleakClient
 import paho.mqtt.client as mqtt
-from random import randrange, uniform
 import time
 
 #This script gets the heart rate from the Bluetooth watch and publishes in under the topic "HeartRate" via MQTT

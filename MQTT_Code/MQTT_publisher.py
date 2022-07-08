@@ -1,5 +1,4 @@
 import paho.mqtt.client as mqtt 
-from random import randrange, uniform
 import time
 import cv2
 import jetson.inference

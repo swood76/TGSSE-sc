@@ -1,16 +1,19 @@
+#!/usr/bin/env python
+'''
+Reads the value from the wired heart rate monitor
+'''
 #import GPIO Lib
 import time
-import Jetson.GPIO as GPIO
+from Jetson import GPIO
 
-
-output_pin = 18
+OUTPUT_PIN = 18
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(output_pin, GPIO.OUT, initial=GPIO.LOW)
+GPIO.setup(OUTPUT_PIN, GPIO.OUT, initial=GPIO.LOW)
 curr_value = GPIO.LOW
 try:
     while True:
         time.sleep(1)
-        GPIO.output(output_pin, curr_value)
+        GPIO.output(OUTPUT_PIN, curr_value)
         curr_value ^= GPIO.HIGH
 finally:
     GPIO.cleanup()

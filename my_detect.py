@@ -1,4 +1,8 @@
-import cv2
+#!/usr/bin/env python
+'''
+Runs inference on the video feed that an
+attached camera takes
+'''
 import jetson.inference
 import jetson.utils
 
@@ -15,4 +19,5 @@ while display.IsOpen():
     img, width,height = camera.CaptureRGBA()
     detections = net.Detect(img, width, height)
     display.RenderOnce(img, width, height)
-    display.SetTitle("object detection | Network {:0.0f} FPS".format(net.GetNetworkFPS()))
+    #display.SetTitle("object detection | Network {:0.0f} FPS".format(net.GetNetworkFPS()))
+    display.SetTitle(f"Object detection | Network {net.GetNetworkFPS()} FPS")

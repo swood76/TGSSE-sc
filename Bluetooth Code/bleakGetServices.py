@@ -1,9 +1,12 @@
+#!/usr/bin/env python
+'''
+This script gets all BLE services from the given MAC address
+'''
 import sys
 import asyncio
 import platform
 from bleak import BleakClient
 
-#This script gets all BLE services from the given MAC address
 
 ADDRESS = (
     "60:77:71:7D:9E:03"
@@ -11,6 +14,10 @@ ADDRESS = (
 
 
 async def main(address: str):
+    '''
+    This prints a list of all of the services 
+    found from the given MAC
+    '''
     async with BleakClient(address) as client:
         svcs = await client.get_services()
         print("Services:")

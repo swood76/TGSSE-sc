@@ -7,12 +7,10 @@ import time
 import jetson.inference
 import jetson.utils
 import paho.mqtt.client as mqtt
-
-
-MQTT_BROKER ="10.38.4.25"
+import addr_info
 
 client = mqtt.Client("Jetson",1883)
-client.connect(MQTT_BROKER)
+client.connect(addr_info.MOSQUITTO_IP)
 
 display = jetson.utils.glDisplay()
 net = jetson.inference.detectNet("ssd-mobilenet-v2", threshold=0.5)

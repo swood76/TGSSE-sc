@@ -8,12 +8,10 @@ import asyncio
 import pickle
 from bleak import BleakClient
 import paho.mqtt.client as mqtt
+import addr_info
 
-
-
-MQTT_BROKER ="10.38.4.212"
 client = mqtt.Client("Jetson")
-LOGTIME = 60
+RUNTIME = 60
 
 def notification_handler(sender, data):
     '''Handles the reception of data via bluetooth and sends it back out over MQTT'''
@@ -34,10 +32,9 @@ async def main(address, char_uuid, time):
 
 
 if __name__ == "__main__":
-    client.connect(MQTT_BROKER, 1883)
-    f = open('ADRESSES.pckl', 'rb')
-    ADDRESS, CHARACTERISTIC_UUID = pickle.load(f)
-    f.close()
+    client.connect(addr_info.MOSQUITTO_IP, 1883)
+    ADDRESS = addr_info.BLUETOOTH_MAC
+    CHARACTERISTIC_UUID = addr_info.CHAR_UUID
     asyncio.run(
-        main(ADDRESS, CHARACTERISTIC_UUID,  int(sys.argv[1]) if len(sys.argv) > 1 else LOGTIME)
+        main(ADDRESS, CHARACTERISTIC_UUID,  int(sys.argv[1]) if len(sys.argv) > 1 else RUNTIME)
     )
